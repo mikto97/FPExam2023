@@ -4,10 +4,10 @@ open Exam2023
 let testQ1 () =
     (* Testsfor Q1.1 *)
     printfn "Testing Question 1"
-    (*
+    
     printfn "%A" (eval TT)
     printfn "%A" (eval FF)
-    *)
+    
 
     ()
 

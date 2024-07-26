@@ -1,4 +1,7 @@
 ﻿module Exam2023
+open System.Collections.Generic
+open System.Threading.Tasks
+
 (* If you are importing this into F# interactive then comment out
    the line above and remove the comment for the line bellow.
 
@@ -226,13 +229,19 @@
 
 (* Question 3.1: Collatz sequences *)
 
-    let rec collatz n = 
-        match n with 
-        |1 -> [1]
-        |_ when n % 2 = 0 -> n :: collatz (n/2)
-        |_ -> n :: collatz (3 * n + 1)
+    // let rec collatz n = 
+    //     match n with 
+    //     |1 -> [1]
+    //     |_ when n % 2 = 0 -> n :: collatz (n/2)
+    //     |_ -> n :: collatz (3 * n + 1)
 
-
+    let collatz n =
+        let rec loop acc n =
+            match n with
+            | 1 -> acc
+            | _ when n % 2 = 0 -> loop (acc + 1) (n / 2)
+            | _ -> loop (acc + 1) (3 * n + 1)
+        loop 1 n
 
 (* Question 3.2: Even and odd Collatz sequence elements *)
 
@@ -246,16 +255,64 @@
         (even, odd)
 
 (* Question 3.3: Maximum length Collatz Sequence *)
-  
-    let maxCollatz _ = failwith "not implemented"
+    // let collatz n =
+    //     let rec loop acc n =
+    //         match n with
+    //         | 1 -> acc
+    //         | _ when n % 2 = 0 -> loop (acc + 1) (n / 2)
+    //         | _ -> loop (acc + 1) (3 * n + 1)
+    //     loop 1 n
+
+    let maxCollatz2 x y =
+        let findMaxCollatz (maxNum, maxLength) num =
+            let length = collatz num
+            if length > maxLength then (num, length)
+            else (maxNum, maxLength)
+        
+        Seq.init (y - x + 1) (fun i -> x + i)
+        |> Seq.fold findMaxCollatz (x, collatz x)
 
 (* Question 3.4: Collecting by length *)
-    let collect _ = failwith "not implemented"
-    
+    let collect1 x y =
+        let map = Dictionary<int, HashSet<int>>()
+        for i in x .. y do
+            let length = collatz i
+            if not (map.ContainsKey(length)) then
+                map.[length] <- HashSet()
+            map.[length].Add(i) |> ignore
+        map |> Seq.map (fun kvp -> kvp.Key, kvp.Value |> Set.ofSeq) |> Map.ofSeq
+
+    let collect x y =
+        let numbersWithLengths = 
+            [x .. y]
+            |> List.map (fun n -> (collatz n, n))
+        
+        let groupedByLength = 
+            numbersWithLengths
+            |> List.fold (fun acc (length, number) ->
+                acc
+                |> Map.change length (function
+                    | None -> Some (Set.singleton number)
+                    | Some set -> Some (Set.add number set))
+            ) Map.empty
+        
+        groupedByLength
 (* Question 3.5: Parallel maximum Collatz sequence *)
 
-    let parallelMaxCollatz _ = failwith "not implemented"
-
+    let parallelMaxCollatz x y n = 
+        let step = (y - x + 1) / n
+        let tasks = 
+            [for i in 0 .. n - 1 do
+                let start = x + i * step
+                let end' = if i = n - 1 then y else start + step - 1
+                yield Task.Run (fun () -> maxCollatz2 start end')]
+        Task.WhenAll(tasks)
+        |> Async.AwaitTask
+        |> Async.RunSynchronously
+        |> Array.fold (fun (maxNum, maxLength)(num, length) -> 
+            if length > maxLength then (num, length) else (maxNum, maxLength)    
+        ) (x, collatz x)
+        |> fst
 (* 4: Memory machines *)
 
     type expr =  
