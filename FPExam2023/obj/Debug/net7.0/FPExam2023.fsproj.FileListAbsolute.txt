@@ -27,3 +27,5 @@ C:\Users\toft8\Downloads\F# exan\FPExam2023\FPExam2023\obj\Debug\net7.0\refint\F
 C:\Users\toft8\Downloads\F# exan\FPExam2023\FPExam2023\obj\Debug\net7.0\FPExam2023.pdb
 C:\Users\toft8\Downloads\F# exan\FPExam2023\FPExam2023\obj\Debug\net7.0\FPExam2023.genruntimeconfig.cache
 C:\Users\toft8\Downloads\F# exan\FPExam2023\FPExam2023\obj\Debug\net7.0\ref\FPExam2023.dll
+c:\Users\toft8\Downloads\F# exan\F-exam-prep\FPExam2023\FPExam2023\obj\Debug\net7.0\FPExam2023.AssemblyInfoInputs.cache
+c:\Users\toft8\Downloads\F# exan\F-exam-prep\FPExam2023\FPExam2023\obj\Debug\net7.0\FPExam2023.AssemblyInfo.fs

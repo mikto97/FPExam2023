@@ -113,11 +113,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\toft8\\Downloads\\F# exan\\FPExam2023\\FPExam2023\\FPExam2023.fsproj",
+      "projectUniqueName": "c:\\Users\\toft8\\Downloads\\F# exan\\F-exam-prep\\FPExam2023\\FPExam2023\\FPExam2023.fsproj",
       "projectName": "FPExam2023",
-      "projectPath": "c:\\Users\\toft8\\Downloads\\F# exan\\FPExam2023\\FPExam2023\\FPExam2023.fsproj",
+      "projectPath": "c:\\Users\\toft8\\Downloads\\F# exan\\F-exam-prep\\FPExam2023\\FPExam2023\\FPExam2023.fsproj",
       "packagesPath": "C:\\Users\\toft8\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\toft8\\Downloads\\F# exan\\FPExam2023\\FPExam2023\\obj\\",
+      "outputPath": "c:\\Users\\toft8\\Downloads\\F# exan\\F-exam-prep\\FPExam2023\\FPExam2023\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\toft8\\AppData\\Roaming\\NuGet\\NuGet.Config"
